@@ -1,0 +1,58 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'main/index.css' %}">
+{% endblock %}
+
+{% block body %}
+    <section class="hero-section" id="home">
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="https://via.placeholder.com/1200x500/ADD8E6/000000?text=Achievement+1" alt="Achievement 1">
+                <div class="text">Student Wins National Science Fair</div>
+            </div>
+            <div class="mySlides fade">
+                <img src="https://via.placeholder.com/1200x500/90EE90/000000?text=Achievement+2" alt="Achievement 2">
+                <div class="text">School Ranked Top in Mathematics Olympiad</div>
+            </div>
+            <div class="mySlides fade">
+                <img src="https://via.placeholder.com/1200x500/FFB6C1/000000?text=Achievement+3" alt="Achievement 3">
+                <div class="text">Graduates Admitted to Prestigious Universities</div>
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <h2>Latest News</h2>
+        <div class="news-headlines">
+            <div class="news-item">
+                <h3><a href="#">School Hosts Annual Career Fair</a></h3>
+                <p>July 15, 2025</p>
+            </div>
+            <div class="news-item">
+                <h3><a href="#">New Robotics Club Launched</a></h3>
+                <p>July 10, 2025</p>
+            </div>
+            <div class="news-item">
+                <h3><a href="#">Parent-Teacher Conference Schedule</a></h3>
+                <p>July 5, 2025</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'main/index.js' %}"></script>
+{% endblock %}
