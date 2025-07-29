@@ -19,8 +19,16 @@ class LoginView(generic.View):
         return render(request, self.template_name, context)
     
     
-class DashboardView(generic.View, LoginRequiredMixin):
-    template_name = "portal/dashboard.html"
+class DashboardView(generic.View):
+    template_name = "portal/dashboard/home.html"
+    login_url = "portal/login"
+    
+    def get(self, request):
+        return render(request, self.template_name)
+    
+
+class CourseRegistrationAddDropView(generic.View):
+    template_name = "portal/dashboard/registration_add_drop.html"
     login_url = "portal/login"
     
     def get(self, request):

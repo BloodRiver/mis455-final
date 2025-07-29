@@ -8,6 +8,21 @@ class LoginForm(forms.ModelForm):
         fields = ("username", "password")
         model = AuthUser
         
+        widgets = {
+            "username": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Enter your username"
+                }
+            ),
+            "password": forms.PasswordInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Enter your password"
+                }
+            )
+        }
+        
     def authenticate_user(self):
         return authenticate(
             username=self.cleaned_data["username"],

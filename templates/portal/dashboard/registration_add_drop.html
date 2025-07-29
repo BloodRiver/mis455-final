@@ -1,0 +1,143 @@
+{% extends 'portal/dashboard/base.html' %}
+
+{% block title %}Course Registration &amp; Add/Drop{% endblock %}
+
+{% load static %}
+{% block style %}
+    <link type="text/css" rel="stylesheet" href="{% static 'portal/dashboard/registration_add_drop.css' %}">
+{% endblock %}
+
+{% block body %}
+
+    <!-- Main Content Container -->
+    <div class="main-content-container" id="mainContent">
+        <h2 class="page-heading">Course Registration & Add/Drop</h2>
+
+        <!-- Enrolled Courses Section -->
+        <section id="enrolled-courses" class="mb-5">
+            <h3 class="section-title">Enrolled Courses</h3>
+            <div class="enrolled-courses-grid" id="enrolled-courses-container">
+                <!-- Enrolled course cards will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <!-- Register Courses Section -->
+        <section id="register-courses" class="mb-5">
+            <h3 class="section-title">Register Courses</h3>
+            <div class="row register-courses-container">
+                <!-- All Available Courses Table -->
+                <div class="col-12 col-md-6">
+                    <h4>All Available Courses</h4>
+                    <div class="table-responsive register-courses-table">
+                        <table class="table table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th></th> <!-- Checkbox column -->
+                                    <th scope="col">Course Code</th>
+                                    <th scope="col">Section</th>
+                                    <th scope="col">Timing</th>
+                                    <th scope="col">Enrolled</th>
+                                    <th scope="col">Capacity</th>
+                                </tr>
+                            </thead>
+                            <tbody id="available-courses-table-body">
+                                <!-- Available course rows will be dynamically loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Selected Courses Table (Desktop View) -->
+                <div class="col-12 col-md-6" id="selected-courses-table-desktop">
+                    <h4>Selected Courses</h4>
+                    <div class="table-responsive register-courses-table">
+                        <table class="table table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th></th> <!-- Checkbox column -->
+                                    <th scope="col">Course Code</th>
+                                    <th scope="col">Section</th>
+                                    <th scope="col">Timing</th>
+                                    <th scope="col">Enrolled</th>
+                                    <th scope="col">Capacity</th>
+                                </tr>
+                            </thead>
+                            <tbody id="selected-courses-table-body-desktop">
+                                <!-- Selected course rows will be dynamically loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Save Changes Button -->
+        <div class="save-changes-btn-container">
+            <button class="save-changes-btn" id="saveChangesBtn">Save Changes and Complete Registration or Add/Drop</button>
+        </div>
+
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="confirmation-modal-backdrop" id="confirmationModal">
+        <div class="confirmation-modal-content">
+            <h4>Are you sure you wish to save these changes?</h4>
+
+            <div class="summary-section">
+                <h5>Newly Registered/Added Courses:</h5>
+                <ul class="summary-list" id="newlyRegisteredCoursesSummary">
+                    <!-- Course codes will be dynamically added here -->
+                </ul>
+            </div>
+
+            <div class="summary-section">
+                <h5>Dropped Courses:</h5>
+                <ul class="summary-list" id="droppedCoursesSummary">
+                    <!-- Course codes will be dynamically added here -->
+                </ul>
+            </div>
+
+            <div class="button-group">
+                <button class="modal-btn confirm-btn" id="confirmRegistrationBtn">Confirm & Complete Registration</button>
+                <button class="modal-btn go-back-btn" id="goBackBtn">Go Back and Modify Selection</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile "Show Selected Courses" Button -->
+    <div class="selected-courses-mobile-trigger" id="showSelectedTrigger">
+        <button class="show-selected-btn" id="showSelectedBtn">Show Selected Courses (0)</button>
+    </div>
+
+    <!-- Mobile "Selected Courses" Overlay -->
+    <div class="selected-courses-overlay" id="selectedCoursesOverlay">
+        <div class="overlay-header">
+            <button class="hide-selected-btn" id="hideSelectedBtn">Hide Selected Courses</button>
+        </div>
+        <h4>Selected Courses</h4>
+        <div class="table-responsive register-courses-table flex-grow-1"> <!-- flex-grow-1 to make table scrollable -->
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th></th> <!-- Checkbox column -->
+                        <th scope="col">Course Code</th>
+                        <th scope="col">Section</th>
+                        <th scope="col">Timing</th>
+                        <th scope="col">Enrolled</th>
+                        <th scope="col">Capacity</th>
+                    </tr>
+                </thead>
+                <tbody id="selected-courses-table-body-mobile">
+                    <!-- Selected course rows will be dynamically loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'portal/dashboard/registration_add_drop.js' %}">
+    </script>
+{% endblock %}
