@@ -95,3 +95,10 @@ class FacultyEvaluationView(generic.View):
     
     def get(self, request):
         return render(request, self.template_name)
+    
+    
+class StudentAdmissionView(generic.View):
+    template_name = "portal/dashboard/student_admission.html"
+    
+    def get(self, request):
+        return render(request, self.template_name)

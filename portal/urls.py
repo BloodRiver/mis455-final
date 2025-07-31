@@ -14,5 +14,6 @@ urlpatterns = [
     path("new-application", views.NewApplicationView.as_view(), name="new_application"),
     path("profile", views.ProfileView.as_view(), name="profile"),
     path("logout", views.logout_view, name="logout"),
-    path("faculty-evaluation", views.FacultyEvaluationView.as_view(), name="faculty_evaluation")
+    path("faculty-evaluation", views.FacultyEvaluationView.as_view(), name="faculty_evaluation"),
+    path("student-admission", views.StudentAdmissionView.as_view(), name="admission")
 ]
