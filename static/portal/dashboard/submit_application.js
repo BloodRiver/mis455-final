@@ -127,12 +127,6 @@ document.addEventListener('DOMContentLoaded', function() {
     filterEndDate.addEventListener('change', applyFilters);
     searchApplicationTitle.addEventListener('input', applyFilters); // Use 'input' for real-time search
 
-    // Event listener for Submit New Application button
-    submitNewApplicationBtn.addEventListener('click', function() {
-        alert("Navigating to new application form... (This is a placeholder)");
-        // In a real application, this would redirect to a new application form page
-    });
-
     // Initial call to populate the table on page load
     populateApplicationsTable();
 });

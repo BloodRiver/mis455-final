@@ -65,6 +65,7 @@
 
 .submit-application-btn {
     background-color: #28a745; /* Green */
+    text-decoration: none;
     border: none;
     color: white;
     padding: 15px 30px;

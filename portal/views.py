@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import logout
 from . import forms
 
 
@@ -59,4 +60,24 @@ class SubmitApplicationView(generic.View):
     
     def get(self, request):
         return render(request, self.template_name)
+    
 
+# class NewApplicationView(LoginRequiredMixin, generic.View):
+class NewApplicationView(generic.View):
+    template_name = "portal/dashboard/new_application.html"
+    
+    def get(self, request):
+        return render(request, self.template_name)
+    
+
+# class ProfileView(LoginRequiredMixin, generic.View):
+class ProfileView(generic.View):
+    template_name = "portal/dashboard/profile_management.html"
+    
+    def get(self, request):
+        return render(request, self.template_name)
+    
+    
+def logout_view(request):
+    logout(request)
+    return redirect("portal:login")

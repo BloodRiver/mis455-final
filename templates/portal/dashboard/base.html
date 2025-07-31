@@ -28,8 +28,8 @@
                 Profile Management
             </button>
             <div class="profile-dropdown" id="profileDropdown">
-                <a href="#" class="dropdown-item">Edit Profile</a>
-                <a href="#" class="dropdown-item">Logout</a>
+                <a href="{% url 'portal:profile' %}" class="dropdown-item">Edit Profile</a>
+                <a href="{% url 'portal:logout' %}" class="dropdown-item">Logout</a>
             </div>
         </div>
     </nav>
