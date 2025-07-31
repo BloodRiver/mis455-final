@@ -45,9 +45,17 @@ class RegistrationBillView(generic.View):
         return render(request, self.template_name)
     
 
-# class RegistrationBillView(LoginRequiredMixin, generic.View):
+# class CourseWithdrawalView(LoginRequiredMixin, generic.View):
 class CourseWithdrawalView(generic.View):
     template_name = "portal/dashboard/course_withdrawal.html"
+    
+    def get(self, request):
+        return render(request, self.template_name)
+    
+
+# class SubmitApplicationView(LoginRequiredMixin, generic.View):
+class SubmitApplicationView(generic.View):
+    template_name = "portal/dashboard/submit_application.html"
     
     def get(self, request):
         return render(request, self.template_name)

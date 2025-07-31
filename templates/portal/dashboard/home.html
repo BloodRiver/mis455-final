@@ -37,6 +37,84 @@
             </center>
         </section>
 
+        <!-- Course Filters Section -->
+        <section id="course-filters" class="mb-5">
+            <h3 class="section-title">Filter Available Courses</h3>
+            <div class="filters-container">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="courseSearch" class="form-label">Search by Course Code/Title</label>
+                        <input type="text" class="form-control" id="courseSearch" placeholder="e.g., CS101 or Programming">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Filter by Course Type</label>
+                        <div class="dropdown filter-dropdown">
+                            <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownCourseType" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                Select Course Types
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownCourseType" id="filterCourseTypeChecklist">
+                                <li><label class="dropdown-item"><input type="checkbox" value="Major"> Major</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="Minor"> Minor</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="Optional"> Optional</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="Foundation"> Foundation</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Filter by Completion Status</label>
+                        <div class="dropdown filter-dropdown">
+                            <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownCompletionStatus" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                Select Completion Status
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownCompletionStatus" id="filterCompletionStatusChecklist">
+                                <li><label class="dropdown-item"><input type="checkbox" value="locked"> Locked (Prerequisites Not Met)</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="unlocked"> Unlocked (Prerequisites Met)</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="completed"> Completed</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="withdrawn"> Withdrawn</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="incomplete"> Incomplete (I Grade)</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="not enrolled"> Not Enrolled</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="filterStartTime" class="form-label">Class Start Time</label>
+                        <input type="time" class="form-control" id="filterStartTime">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="filterEndTime" class="form-label">Class End Time</label>
+                        <input type="time" class="form-control" id="filterEndTime">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Filter by Grade</label>
+                        <div class="dropdown filter-dropdown">
+                            <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownGrade" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                Select Grades
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownGrade" id="filterGradeChecklist">
+                                <li><label class="dropdown-item"><input type="checkbox" value="A+"> A+</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="A"> A</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="A-"> A-</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="B+"> B+</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="B"> B</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="B-"> B-</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="C+"> C+</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="C"> C</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="C-"> C-</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="D+"> D+</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="D"> D</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="F"> F</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="W"> W (Withdrawn)</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="I"> I (Incomplete)</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                        <button class="btn btn-primary" id="applyCourseFiltersBtn">Apply Filters</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Available Courses Table -->
         <section id="available-courses" class="mb-5">
             <h3 class="section-title">Available Courses</h3>
@@ -48,6 +126,7 @@
                             <th scope="col">Course Title</th>
                             <th scope="col">Section</th>
                             <th scope="col">Timing</th>
+                            <th scope="col">Grade</th> <!-- New Grade Column Header -->
                         </tr>
                     </thead>
                     <tbody id="courses-table-body">

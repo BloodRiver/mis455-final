@@ -1,0 +1,226 @@
+/* Main Content Container */
+.main-content-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 1200px; /* Max width for the content */
+    margin: 20px; /* Margin around the container */
+    transition: filter 0.3s ease; /* For dimming effect */
+}
+.main-content-container.dimmed {
+    filter: brightness(0.5); /* Dim effect */
+    pointer-events: none; /* Disable interaction with dimmed content */
+}
+
+.page-heading {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #002147;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+.page-heading::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: #007bff;
+    border-radius: 2px;
+}
+
+/* Section Title */
+.section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #002147;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #007bff;
+    border-radius: 1.5px;
+}
+
+/* Submit Application Button */
+.submit-application-btn-container {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.submit-application-btn {
+    background-color: #28a745; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.submit-application-btn:hover {
+    background-color: #218838;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.6);
+}
+
+/* Applications Table */
+.applications-table {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+.applications-table thead {
+    background-color: #002147;
+    color: white;
+}
+.applications-table th {
+    padding: 15px;
+    font-weight: 600;
+    border-bottom: none;
+}
+.applications-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+.applications-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.applications-table tbody tr:hover {
+    background-color: #e9ecef;
+}
+.applications-table td {
+    padding: 12px 15px;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+}
+.applications-table .status-pending {
+    color: #ffc107;
+    font-weight: 600;
+}
+.applications-table .status-approved {
+    color: #28a745;
+    font-weight: 600;
+}
+.applications-table .status-rejected {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+/* Filters Section */
+.filters-container {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.filters-container .form-label {
+    font-weight: 500;
+    color: #002147;
+}
+.filters-container .form-control,
+.filters-container .form-select {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 8px 12px;
+}
+.filters-container .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.filters-container .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .main-content-container {
+        padding: 30px;
+    }
+    .page-heading {
+        font-size: 2rem;
+    }
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .submit-application-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    .filters-container {
+        padding: 20px;
+    }
+}
+@media (max-width: 768px) {
+    .main-content-container {
+        padding: 25px;
+        margin: 15px;
+    }
+    .page-heading {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    .section-title {
+        font-size: 1.6rem;
+    }
+    .applications-table thead {
+        display: none; /* Hide table header on small screens */
+    }
+    .applications-table, .applications-table tbody, .applications-table tr, .applications-table td {
+        display: block;
+        width: 100%;
+    }
+    .applications-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .applications-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+    }
+    .applications-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: calc(50% - 30px);
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 600;
+        color: #002147;
+    }
+    .filters-container .row > div {
+        margin-bottom: 15px;
+    }
+    .filters-container .row > div:last-child {
+        margin-bottom: 0;
+    }
+}

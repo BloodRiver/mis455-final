@@ -1,0 +1,77 @@
+{% extends "portal/dashboard/base.html" %}
+{% block title %}All Applications{% endblock %}
+
+{% load static %}
+{% block style %}
+    <link href="{% static 'portal/dashboard/submit_application.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body %}
+     <!-- Main Content Container -->
+    <div class="main-content-container" id="mainContent">
+        <h2 class="page-heading">Submit Application</h2>
+
+        <!-- Submit New Application Button -->
+        <div class="submit-application-btn-container">
+            <button class="submit-application-btn" id="submitNewApplicationBtn">Submit New Application</button>
+        </div>
+
+        <!-- Filters Section -->
+        <section id="application-filters" class="mb-5">
+            <h3 class="section-title">Filter Applications</h3>
+            <div class="filters-container">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="filterApplicationType" class="form-label">Application Type</label>
+                        <select class="form-select" id="filterApplicationType">
+                            <option value="">All Types</option>
+                            <option value="Scholarship">Scholarship</option>
+                            <option value="Leave of Absence">Leave of Absence</option>
+                            <option value="Course Exemption">Course Exemption</option>
+                            <option value="Transcript Request">Transcript Request</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="filterStartDate" class="form-label">Date Range (Start)</label>
+                        <input type="date" class="form-control" id="filterStartDate">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="filterEndDate" class="form-label">Date Range (End)</label>
+                        <input type="date" class="form-control" id="filterEndDate">
+                    </div>
+                    <div class="col-md-8">
+                        <label for="searchApplicationTitle" class="form-label">Search by Title</label>
+                        <input type="text" class="form-control" id="searchApplicationTitle" placeholder="e.g., Scholarship Application">
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button class="btn btn-primary w-100" id="applyFiltersBtn">Apply Filters</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Previous Applications Table -->
+        <section id="previous-applications-section" class="mb-5">
+            <h3 class="section-title">My Applications</h3>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle applications-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Application Type</th>
+                            <th scope="col">Application Title</th>
+                            <th scope="col">Date of Application</th>
+                            <th scope="col">Application Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="applicationsTableBody">
+                        <!-- Application rows will be dynamically loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'portal/dashboard/submit_application.js' %}"></script>
+{% endblock %}

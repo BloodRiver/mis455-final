@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Mock Data for Academic Statistics (Existing functionality)
-    const studentStats = {
-        cgpa: "3.75",
-        creditsAttempted: 90,
-        creditsEarned: 84,
-        creditsRetaken: 6
-    };
+    // Get elements for Course Filters (UPDATED)
+    const courseSearch = document.getElementById('courseSearch');
+    const filterCourseTypeChecklist = document.getElementById('filterCourseTypeChecklist');
+    const filterCompletionStatusChecklist = document.getElementById('filterCompletionStatusChecklist');
+    const filterStartTime = document.getElementById('filterStartTime');
+    const filterEndTime = document.getElementById('filterEndTime');
+    const filterGradeChecklist = document.getElementById('filterGradeChecklist');
+    const applyCourseFiltersBtn = document.getElementById('applyCourseFiltersBtn');
 
     // Mock Data for Course Attendance
     const attendanceData = [
         {
             code: "CSC100",
             section: "A",
-            timing: "Mon/Wed 10:00 AM - 11:30 AM",
             classroom: "LH-101",
             attended: 12,
             total: 15
@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             code: "ENG101",
             section: "B",
-            timing: "Sun/Tue 10:00 AM - 11:30 AM",
             classroom: "AC-203",
             attended: 8,
             total: 15
@@ -28,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             code: "MAT104",
             section: "C",
-            timing: "Mon/Wed 11:40 AM - 1:10 PM",
             classroom: "SC-305",
             attended: 4,
             total: 15
@@ -36,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             code: "PHY101",
             section: "D",
-            timing: "Sun/Tue 11:30 AM - 1:10 PM",
             classroom: "LH-201",
             attended: 14,
             total: 15
@@ -51,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             code: "ENG102",
             section: "B",
-            timing: "Mon/Wed 1:20 PM - 2:50 PM",
             classroom: "AC-204",
             attended: 3,
             total: 15
@@ -78,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div>
                         <h5>${course.code} - Section ${course.section}</h5>
                         <p>Classroom: ${course.classroom}</p>
-                        <p>Time: ${course.timing}</p>
                     </div>
                     <div class="attendance-figure">${course.attended}/${course.total}</div>
                 </div>
@@ -86,6 +81,14 @@ document.addEventListener("DOMContentLoaded", function () {
             container.insertAdjacentHTML('beforeend', cardHtml);
         });
     }
+
+    // Mock Data for Academic Statistics (Existing functionality)
+    const studentStats = {
+        cgpa: "3.75",
+        creditsAttempted: 90,
+        creditsEarned: 84,
+        creditsRetaken: 6
+    };
 
     // Function to populate Academic Statistics (Existing functionality)
     function populateAcademicStats() {
@@ -114,72 +117,140 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Mock Data for Available Courses (Existing functionality)
-    const availableCourses = [
-        {
-            code: "CS101",
-            title: "Introduction to Programming",
-            section: "A",
-            timing: "Mon/Wed 10:00 AM - 11:30 AM"
-        },
-        {
-            code: "MA201",
-            title: "Calculus I",
-            section: "B",
-            timing: "Tue/Thu 09:00 AM - 10:30 AM"
-        },
-        {
-            code: "PH101",
-            title: "General Physics",
-            section: "C",
-            timing: "Mon/Wed/Fri 01:00 PM - 02:00 PM"
-        },
-        {
-            code: "EN305",
-            title: "Technical Writing",
-            section: "D",
-            timing: "Tue/Thu 02:00 PM - 03:30 PM"
-        },
-        {
-            code: "EC202",
-            title: "Microeconomics",
-            section: "A",
-            timing: "Mon/Wed 11:30 AM - 01:00 PM"
-        },
-        {
-            code: "CS305",
-            title: "Data Structures and Algorithms",
-            section: "B",
-            timing: "Tue/Thu 10:30 AM - 12:00 PM"
-        }
+    // Mock Data for Available Courses (Updated with type and status)
+    const allAvailableCoursesData = [
+        { code: "CS101", title: "Introduction to Programming", section: "A", timing: "Mon/Wed 10:00 AM - 11:30 AM", type: "Foundation", status: "completed" },
+        { code: "CS101", title: "Introduction to Programming", section: "B", timing: "Mon/Wed 11:40 AM - 12:50 PM", type: "Foundation", status: "completed" },
+        { code: "CS101", title: "Introduction to Programming", section: "C", timing: "Mon/Wed 1:00 PM - 2:30 PM", type: "Foundation", status: "completed" },
+        { code: "MA201", title: "Calculus I", section: "B", timing: "Tue/Thu 09:00 AM - 10:30 AM", type: "Foundation", status: "completed" },
+        { code: "PH101", title: "General Physics", section: "C", timing: "Mon/Wed/Fri 01:00 PM - 02:00 PM", type: "Foundation", status: "completed" },
+        { code: "SWE303", title: "Software Engineering", section: "A", timing: "Mon/Wed 09:00 AM - 10:30 AM", type: "Major", status: "unlocked" },
+        { code: "SWE303", title: "Software Engineering", section: "B", timing: "Tue/Thu 11:00 AM - 12:30 PM", type: "Major", status: "locked" },
+        { code: "CSC401", title: "Advanced Algorithms", section: "A", timing: "Mon/Wed 03:00 PM - 04:30 PM", type: "Major", status: "locked" },
+        { code: "ENG205", title: "World Literature", section: "C", timing: "Tue/Thu 01:00 PM - 02:30 PM", type: "Optional", status: "unlocked" },
+        { code: "ECO101", title: "Principles of Economics", section: "D", timing: "Mon/Wed 02:00 PM - 03:30 PM", type: "Foundation", status: "not enrolled" },
+        { code: "PHY202", title: "Electromagnetism", section: "A", timing: "Tue/Thu 09:00 AM - 10:30 AM", type: "Minor", status: "unlocked" },
+        { code: "HUM101", title: "Introduction to Philosophy", section: "B", timing: "Fri 09:00 AM - 10:30 AM", type: "Optional", status: "not enrolled" },
+        { code: "MGT301", title: "Organizational Behavior", section: "C", timing: "Mon/Wed 11:00 AM - 12:30 PM", type: "Minor", status: "unlocked" },
+        { code: "HIS101", title: "World History", section: "A", timing: "Tue/Thu 04:00 PM - 05:30 PM", type: "Foundation", status: "not enrolled" },
+        { code: "CSC202", title: "Database Systems", section: "E", timing: "Mon/Wed 08:00 AM - 09:30 AM", type: "Major", status: "incomplete" },
+        { code: "ART100", title: "Art Appreciation", section: "F", timing: "Fri 11:00 AM - 12:30 PM", type: "Optional", status: "withdrawn" }
     ];
 
-    // Function to populate Available Courses Table (Existing functionality)
-    function populateCoursesTable() {
+    // Mock Data for Completed Courses and Grades
+    const completedCoursesGrades = {
+        "CS101": "B+",
+        "MA201": "A-",
+        "PH101": "C+",
+        "CSC202": "I", // Incomplete grade
+        "ART100": "W" // Withdrawn grade
+    };
+
+    // Helper function to convert HH:MM AM/PM to minutes from midnight
+    function convertTimeToMinutes(timeStr) {
+        if (!timeStr) return null;
+        const [time, ampm] = timeStr.split(' ');
+        let [hours, minutes] = time.split(':').map(Number);
+        if (ampm === 'PM' && hours !== 12) {
+            hours += 12;
+        } else if (ampm === 'AM' && hours === 12) {
+            hours = 0;
+        }
+        return hours * 60 + minutes;
+    }
+
+    // Function to filter and populate Available Courses Table
+    function filterAndPopulateCoursesTable() {
         const coursesTableBody = document.getElementById('courses-table-body');
         coursesTableBody.innerHTML = ''; // Clear existing content
 
-        if (availableCourses.length === 0) {
-            coursesTableBody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">No courses available at this time.</td></tr>';
+        let filteredCourses = [...allAvailableCoursesData]; // Start with all data
+
+        // 1. Search by course code/title
+        const searchTerm = courseSearch.value.toLowerCase().trim();
+        if (searchTerm) {
+            filteredCourses = filteredCourses.filter(course =>
+                course.code.toLowerCase().includes(searchTerm) ||
+                course.title.toLowerCase().includes(searchTerm)
+            );
+        }
+
+        // 2. Filter by course type (UPDATED)
+        const selectedTypes = Array.from(filterCourseTypeChecklist.querySelectorAll('input[type="checkbox"]:checked'))
+                                    .map(checkbox => checkbox.value);
+        if (selectedTypes.length > 0) {
+            filteredCourses = filteredCourses.filter(course =>
+                selectedTypes.includes(course.type)
+            );
+        }
+
+        // 3. Filter by course completion status (UPDATED)
+        const selectedStatuses = Array.from(filterCompletionStatusChecklist.querySelectorAll('input[type="checkbox"]:checked'))
+                                        .map(checkbox => checkbox.value);
+        if (selectedStatuses.length > 0) {
+            filteredCourses = filteredCourses.filter(course =>
+                selectedStatuses.includes(course.status)
+            );
+        }
+
+        // 4. Filter by class timing (start time and end time)
+        const startTimeFilter = filterStartTime.value;
+        const endTimeFilter = filterEndTime.value;
+
+        if (startTimeFilter || endTimeFilter) {
+            const filterStartMinutes = startTimeFilter ? convertTimeToMinutes(startTimeFilter) : null;
+            const filterEndMinutes = endTimeFilter ? convertTimeToMinutes(endTimeFilter) : null;
+
+            filteredCourses = filteredCourses.filter(course => {
+                // Extract the start time from the course's timing string (e.g., "10:00 AM - 11:30 AM")
+                const courseTimingMatch = course.timing.match(/(\d{1,2}:\d{2} (AM|PM))/);
+                if (!courseTimingMatch) return true; // If timing format is unexpected, include by default
+
+                const courseStartTimeStr = courseTimingMatch[1];
+                const courseStartMinutes = convertTimeToMinutes(courseStartTimeStr);
+
+                if (filterStartMinutes !== null && courseStartMinutes < filterStartMinutes) {
+                    return false;
+                }
+                if (filterEndMinutes !== null && courseStartMinutes > filterEndMinutes) {
+                    return false;
+                }
+                return true;
+            });
+        }
+
+        // 5. Filter by grade (UPDATED)
+        const selectedGrades = Array.from(filterGradeChecklist.querySelectorAll('input[type="checkbox"]:checked'))
+                                    .map(checkbox => checkbox.value);
+        if (selectedGrades.length > 0) {
+            filteredCourses = filteredCourses.filter(course => {
+                const courseGrade = completedCoursesGrades[course.code];
+                // Only apply grade filter if the course is 'completed' and has a grade
+                return course.status === 'completed' && courseGrade && selectedGrades.includes(courseGrade);
+            });
+        }
+
+
+        if (filteredCourses.length === 0) {
+            coursesTableBody.innerHTML = '<tr><td colspan="5" class="text-center text-muted">No courses found matching your criteria.</td></tr>';
             return;
         }
 
-        availableCourses.forEach(course => {
+        filteredCourses.forEach(course => {
+            const grade = completedCoursesGrades[course.code] || ''; // Get grade or empty string if not found
+
             const courseRow = `
                 <tr>
                     <td data-label="Course Code">${course.code}</td>
                     <td data-label="Course Title">${course.title}</td>
                     <td data-label="Section">${course.section}</td>
                     <td data-label="Timing">${course.timing}</td>
+                    <td data-label="Grade">${grade}</td>
                 </tr>
             `;
             coursesTableBody.insertAdjacentHTML('beforeend', courseRow);
         });
     }
-
-    // Call functions to populate sections on page load
-    populateAcademicStats();
-    populateCoursesTable();
 
     // --- Course Prerequisite Tree Diagram Logic ---
     const courseData = [
@@ -429,9 +500,27 @@ document.addEventListener("DOMContentLoaded", function () {
         treeContainer.appendChild(svg);
     }
 
-    // Call functions to populate sections on page load
+    // Event Listeners for Filters (UPDATED)
+    applyCourseFiltersBtn.addEventListener('click', filterAndPopulateCoursesTable);
+    courseSearch.addEventListener('input', filterAndPopulateCoursesTable);
+
+    // Add event listeners to the checkboxes within the dropdowns
+    filterCourseTypeChecklist.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', filterAndPopulateCoursesTable);
+    });
+    filterCompletionStatusChecklist.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', filterAndPopulateCoursesTable);
+    });
+    filterStartTime.addEventListener('change', filterAndPopulateCoursesTable);
+    filterEndTime.addEventListener('change', filterAndPopulateCoursesTable);
+    filterGradeChecklist.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', filterAndPopulateCoursesTable);
+    });
+
+
+    // Initial calls to populate sections on page load
     populateAttendanceCards();
     populateAcademicStats();
-    renderCourseTree(); // Render the tree diagram
-    populateCoursesTable();
+    renderCourseTree();
+    filterAndPopulateCoursesTable(); // Call the filter function on initial load
 });

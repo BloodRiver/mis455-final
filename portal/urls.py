@@ -9,5 +9,6 @@ urlpatterns = [
     path("dashboard", views.DashboardView.as_view(), name="dashboard"),
     path("course-registration-and-add-drop", views.CourseRegistrationAddDropView.as_view(), name="registration_add_drop"),
     path("registration-bill", views.RegistrationBillView.as_view(), name="registration_bill"),
-    path("course-withdrawal", views.CourseWithdrawalView.as_view(), name="course_withdrawal")
+    path("course-withdrawal", views.CourseWithdrawalView.as_view(), name="course_withdrawal"),
+    path("submit-application", views.SubmitApplicationView.as_view(), name="submit_application")
 ]
