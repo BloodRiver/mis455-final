@@ -41,6 +41,7 @@ class CourseRegistrationAddDropView(generic.View):
 # class RegistrationBillView(LoginRequiredMixin, generic.View):
 class RegistrationBillView(generic.View):
     template_name = "portal/dashboard/registration_bill.html"
+    login_url = "/portal/login"
     
     def get(self, request):
         return render(request, self.template_name)
@@ -49,6 +50,7 @@ class RegistrationBillView(generic.View):
 # class CourseWithdrawalView(LoginRequiredMixin, generic.View):
 class CourseWithdrawalView(generic.View):
     template_name = "portal/dashboard/course_withdrawal.html"
+    login_url = "/portal/login"
     
     def get(self, request):
         return render(request, self.template_name)
@@ -57,6 +59,7 @@ class CourseWithdrawalView(generic.View):
 # class SubmitApplicationView(LoginRequiredMixin, generic.View):
 class SubmitApplicationView(generic.View):
     template_name = "portal/dashboard/submit_application.html"
+    login_url = "/portal/login"
     
     def get(self, request):
         return render(request, self.template_name)
@@ -65,6 +68,7 @@ class SubmitApplicationView(generic.View):
 # class NewApplicationView(LoginRequiredMixin, generic.View):
 class NewApplicationView(generic.View):
     template_name = "portal/dashboard/new_application.html"
+    login_url = "/portal/login"
     
     def get(self, request):
         return render(request, self.template_name)
@@ -73,6 +77,7 @@ class NewApplicationView(generic.View):
 # class ProfileView(LoginRequiredMixin, generic.View):
 class ProfileView(generic.View):
     template_name = "portal/dashboard/profile_management.html"
+    login_url = "/portal/login"
     
     def get(self, request):
         return render(request, self.template_name)
@@ -81,3 +86,12 @@ class ProfileView(generic.View):
 def logout_view(request):
     logout(request)
     return redirect("portal:login")
+
+
+# class FacultyEvaluationView(LoginRequiredMixin, generic.View):
+class FacultyEvaluationView(generic.View):
+    template_name = "portal/dashboard/faculty_evaluation.html"
+    login_url = "/portal/login"
+    
+    def get(self, request):
+        return render(request, self.template_name)
