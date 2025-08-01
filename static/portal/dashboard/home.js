@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
             code: "CSC100",
             section: "A",
             classroom: "LH-101",
+            timing: "Sunday/Tuesday 8:00 AM - 9:30 AM",
             attended: 12,
             total: 15
         },
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
             code: "ENG101",
             section: "B",
             classroom: "AC-203",
+            timing: "Sunday/Tuesday 9:40 AM - 11:10 AM",
             attended: 8,
             total: 15
         },
@@ -28,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
             code: "MAT104",
             section: "C",
             classroom: "SC-305",
+            timing: "Sunday/Tuesday 11:20 AM - 12:50 PM",
             attended: 4,
             total: 15
         },
@@ -35,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
             code: "PHY101",
             section: "D",
             classroom: "LH-201",
+            timing: "Monday/Wednesday 8:00 AM - 9:30 AM",
             attended: 14,
             total: 15
         },
@@ -42,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
             code: "CSC101",
             section: "A",
             classroom: "LH-102",
+            timing: "Monday/Wednesday 9:40 AM - 11:10 AM",
             attended: 10,
             total: 15
         },
@@ -49,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
             code: "ENG102",
             section: "B",
             classroom: "AC-204",
+            timing: "Monday/Wednesday 11:20 AM - 12:50 PM",
             attended: 3,
             total: 15
         }
@@ -74,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div>
                         <h5>${course.code} - Section ${course.section}</h5>
                         <p>Classroom: ${course.classroom}</p>
+                        <p>Timing: ${course.timing}</p>
                     </div>
                     <div class="attendance-figure">${course.attended}/${course.total}</div>
                 </div>
