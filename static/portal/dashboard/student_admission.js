@@ -3,6 +3,32 @@ document.addEventListener('DOMContentLoaded', function () {
     const formSteps = document.querySelectorAll('.form-step');
     const totalSteps = formSteps.length;
 
+    // Get references to the file input and the image preview elements
+    const fileInput = document.getElementById('student_photo');
+    const previewImage = document.getElementById('profile-photo-preview');
+
+    fileInput.addEventListener('change', function(event) {
+        // Check if a file was selected
+        const file = event.target.files[0];
+
+        if (file) {
+            // Create a FileReader to read the file
+            const reader = new FileReader();
+
+            // Set the function to run when the file has been loaded
+            reader.onload = function(e) {
+                // Set the source of the image preview to the file data URL
+                previewImage.src = e.target.result;
+            };
+
+            // Read the file as a data URL
+            reader.readAsDataURL(file);
+        } else {
+            // If no file is selected, reset the image preview to the placeholder
+            previewImage.src = "https://placehold.co/150x150/e9ecef/adb5bd?text=Photo";
+        }
+    });
+
     const progressBar = document.getElementById('progressBar');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -72,20 +98,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Event listener for form submission (on the last step)
-    admissionForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        // In a real application, you would handle form submission here,
-        // such as sending data to a server.
-        if (validateStep(currentStep)) {
-            console.log("Form submitted!");
-            alert('Application Submitted Successfully!');
-        }
-    });
+    // admissionForm.addEventListener('submit', function(event) {
+    //     event.preventDefault();
+    //     // In a real application, you would handle form submission here,
+    //     // such as sending data to a server.
+    //     if (validateStep(currentStep)) {
+    //         console.log("Form submitted!");
+    //         alert('Application Submitted Successfully!');
+    //     }
+    // });
 
     // Handle the same as present address checkbox
-    const sameAsPresentCheckbox = document.getElementById('same_as_present');
+    const sameAsPresentCheckbox = document.getElementById('id_same_as_present');
     const permanentAddressFields = document.getElementById('permanent-address-fields');
-    const permanentAddressTextarea = document.getElementById('permanent_address');
+    const permanentAddressTextarea = document.getElementById('id_permanent_address');
 
     sameAsPresentCheckbox.addEventListener('change', function () {
         if (this.checked) {
@@ -98,25 +124,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Handle adding more emergency phone numbers
-    const addEmergencyPhoneBtn = document.getElementById('add-emergency-phone');
+    // const addEmergencyPhoneBtn = document.getElementById('add-emergency-phone');
     const emergencyPhoneContainer = document.getElementById('emergency-phone-numbers');
 
-    addEmergencyPhoneBtn.addEventListener('click', function() {
-        const newPhoneInputDiv = document.createElement('div');
-        newPhoneInputDiv.className = 'input-group mb-2';
-        newPhoneInputDiv.innerHTML = `
-            <input type="tel" class="form-control" name="emergency_phone_${emergencyPhoneContainer.children.length + 1}">
-            <button type="button" class="btn btn-outline-danger remove-phone-btn">
-                <i class="fas fa-trash"></i>
-            </button>
-        `;
-        emergencyPhoneContainer.appendChild(newPhoneInputDiv);
+    // addEmergencyPhoneBtn.addEventListener('click', function() {
+    //     const newPhoneInputDiv = document.createElement('div');
+    //     newPhoneInputDiv.className = 'input-group mb-2';
+    //     newPhoneInputDiv.innerHTML = `
+    //         <input type="tel" class="form-control" name="emergency_phone_${emergencyPhoneContainer.children.length + 1}">
+    //         <button type="button" class="btn btn-outline-danger remove-phone-btn">
+    //             <i class="fas fa-trash"></i>
+    //         </button>
+    //     `;
+    //     emergencyPhoneContainer.appendChild(newPhoneInputDiv);
 
-        // Add event listener to the new remove button
-        newPhoneInputDiv.querySelector('.remove-phone-btn').addEventListener('click', function() {
-            newPhoneInputDiv.remove();
-        });
-    });
+    //     // Add event listener to the new remove button
+    //     newPhoneInputDiv.querySelector('.remove-phone-btn').addEventListener('click', function() {
+    //         newPhoneInputDiv.remove();
+    //     });
+    // });
 
     // Initialize the form
     showStep(currentStep);

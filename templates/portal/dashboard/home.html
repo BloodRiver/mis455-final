@@ -1,5 +1,7 @@
 {% extends "portal/dashboard/base.html" %}
 
+{% block title %}Dashboard{% endblock %}
+
 {% load static %}
 
 {% block style %}
@@ -118,22 +120,35 @@
         <!-- Available Courses Table -->
         <section id="available-courses" class="mb-5">
             <h3 class="section-title">Available Courses</h3>
-            <div class="table-responsive">
-                <table class="table table-hover align-middle">
-                    <thead>
-                        <tr>
-                            <th scope="col">Course Code</th>
-                            <th scope="col">Course Title</th>
-                            <th scope="col">Section</th>
-                            <th scope="col">Timing</th>
-                            <th scope="col">Grade</th> <!-- New Grade Column Header -->
-                        </tr>
-                    </thead>
-                    <tbody id="courses-table-body">
-                        <!-- Course rows will be dynamically loaded here -->
-                    </tbody>
-                </table>
-            </div>
+            {% if all_course_sections %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">Course Code</th>
+                                <th scope="col">Course Title</th>
+                                <th scope="col">Section</th>
+                                <th scope="col">Timing</th>
+                                <th scope="col">Grade</th> <!-- New Grade Column Header -->
+                            </tr>
+                        </thead>
+                        <tbody id="courses-table-body">
+                            <!-- Course rows will be dynamically loaded here -->
+                             {% for each_course_section in all_course_sections %}
+                                <tr>
+                                    <td data-label="Course Code">{{ each_course_section.course.course_code }}</td>
+                                    <td data-label="Course Title">{{ each_course_section.course.course_title }}</td>
+                                    <td data-label="Section">{{ each_course_section.section_number }}</td>
+                                    <td data-label="Timing">{{ each_course_section.get_course_timing_as_str }}</td>
+                                    {% comment %} <td data-label="Grade">${grade}</td> {% endcomment %}
+                                </tr>
+                             {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <h3 class="text-center">There are currently no courses available</h3>
+            {% endif %}
         </section>
     </div>
 {% endblock %}

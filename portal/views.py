@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout
-from . import forms
+from portal import forms
+from main import models
 
 
 def redirect_view(request):
@@ -21,12 +22,11 @@ class LoginView(generic.View):
     
     
 # class DashboardView(LoginRequiredMixin, generic.View):
-class DashboardView(generic.View):
+class DashboardView(generic.ListView):
     template_name = "portal/dashboard/home.html"
     login_url = "/portal/login"
-    
-    def get(self, request):
-        return render(request, self.template_name)
+    queryset = models.CourseSection.objects.all()
+    context_object_name = "all_course_sections"
     
 
 # class CourseRegistrationAddDropView(LoginRequiredMixin, generic.View):
@@ -102,3 +102,15 @@ class StudentAdmissionView(generic.View):
     
     def get(self, request):
         return render(request, self.template_name)
+
+    def post(self, request):
+        form = forms.StudentAdmissionForm(data=request.POST, files=request.FILES)
+        
+        if form.is_valid():
+            print("Form is valid")
+        else:
+            print(form.errors.as_json())
+            print("-" * 80)
+            print(sorted(form.cleaned_data.items(), key=lambda x: x[0]))
+        
+        return redirect("portal:admission")

@@ -18,18 +18,29 @@
                 <div class="progress-bar" role="progressbar" id="progressBar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
 
-            <form id="admission-form">
+            <form method="POST" enctype="multipart/form-data" id="admission-form">
+                {% csrf_token %}
                 <!-- Step 1: Personal Information -->
                 <div class="form-step active" data-step="0">
                     <h5 class="section-header">Personal Information</h5>
+                    <div class="row g-3 mb-3">
+                        <div class="profile-photo-container d-flex align-items-center flex-column">
+                            <img id="profile-photo-preview" src="https://placehold.co/150x150/e9ecef/adb5bd?text=Photo" alt="Profile Photo" class="profile-photo-preview" style="max-width: 300px; max-height: 300px;">
+                            <br>
+                            <input type="file" class="form-control" id="student_photo" id="id_photo" name="photo" accept=".jpg, .jpeg, .png, .webp, image/jpeg, image/png, image/webp" style="width: fit-content; margin: auto;" required>
+                            <small class="help-text">Please Passport Size Photo for your ID Card</small>
+                        </div>
+                    </div>
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="full_name" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="full_name" required>
+                            <label for="id_first_name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="id_first_name" name="first_name" required>
+                            <label for="id_last_name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="id_last_name" name="last_name" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="blood_group" class="form-label">Blood Group</label>
-                            <select class="form-select" id="blood_group" required>
+                            <label for="id_blood_group" class="form-label">Blood Group</label>
+                            <select class="form-select" id="id_blood_group" name="blood_group" required>
                                 <option value="" selected disabled>Select...</option>
                                 <option value="A+">A+</option>
                                 <option value="A-">A-</option>
@@ -41,7 +52,7 @@
                                 <option value="O-">O-</option>
                             </select>
                         </div>
-                        <div class="col-12">
+                        {% comment %} <div class="col-12">
                             <label class="form-label">Special Conditions</label>
                             <div class="row">
                                 <div class="col-sm-6 col-md-4">
@@ -89,6 +100,7 @@
                             </div>
                             <small class="form-text text-muted">Please check all that apply.</small>
                         </div>
+                        {% endcomment %}
                     </div>
                 </div>
 
@@ -97,98 +109,90 @@
                     <h5 class="section-header">Contact Information</h5>
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" required>
+                            <label for="id_email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="id_email" name="email" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="phone_number" class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" id="phone_number" required>
+                            <label for="id_phone_number" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="id_phone_number" name="phone_number" required>
                         </div>
                         <div class="col-12">
-                            <label for="present_address" class="form-label">Present Address</label>
-                            <textarea class="form-control" id="present_address" rows="3" required></textarea>
+                            <label for="id_present_address" class="form-label">Present Address</label>
+                            <textarea class="form-control" id="id_present_address" name="present_address" rows="3" required></textarea>
                         </div>
                         <div class="col-12">
                             <div class="form-check mt-2">
-                                <input class="form-check-input" type="checkbox" id="same_as_present">
-                                <label class="form-check-label" for="same_as_present">Permanent address is the same as present address</label>
+                                <input class="form-check-input" type="checkbox" id="id_same_as_present" name="same_as_present">
+                                <label class="form-check-label" for="id_same_as_present">Permanent address is the same as present address</label>
                             </div>
                         </div>
                         <div class="col-12 mt-3" id="permanent-address-fields">
-                            <label for="permanent_address" class="form-label">Permanent Address</label>
-                            <textarea class="form-control" id="permanent_address" rows="3" required></textarea>
+                            <label for="id_permanent_address" class="form-label">Permanent Address</label>
+                            <textarea class="form-control" id="id_permanent_address" name="permanent_address" rows="3" required></textarea>
                         </div>
                     </div>
                 </div>
 
                 <!-- Step 3: Family & Emergency -->
                 <div class="form-step" data-step="2">
-                    <h5 class="section-header">Family & Emergency</h5>
+                    <h5 class="section-header">Family &amp; Emergency</h5>
                     <h6 class="mb-3">Parent/Guardian Information</h6>
                     <div class="row g-3 mb-4">
                         <div class="col-md-6">
-                            <label for="father_name" class="form-label">Father's Full Name</label>
-                            <input type="text" class="form-control" id="father_name" required>
+                            <label for="id_father_full_name" class="form-label">Father's Full Name</label>
+                            <input type="text" class="form-control" id="id_father_full_name" name="father_full_name" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="father_phone" class="form-label">Father's Phone Number</label>
-                            <input type="tel" class="form-control" id="father_phone" required>
+                            <label for="id_father_phone_number" class="form-label">Father's Phone Number</label>
+                            <input type="tel" class="form-control" id="id_father_phone_number" name="father_phone_number" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="father_email" class="form-label">Father's Email</label>
-                            <input type="email" class="form-control" id="father_email" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="father_education" class="form-label">Father's Education (Optional)</label>
-                            <input type="text" class="form-control" id="father_education">
+                            <label for="id_father_email" class="form-label">Father's Email</label>
+                            <input type="email" class="form-control" id="id_father_email" name="father_email" required>
                         </div>
                         <div class="col-12">
-                            <label for="father_profession" class="form-label">Father's Profession</label>
-                            <input type="text" class="form-control" id="father_profession" required>
+                            <label for="id_father_profession" class="form-label">Father's Profession</label>
+                            <input type="text" class="form-control" id="id_father_profession" name="father_profession" required>
                         </div>
                     </div>
 
                     <div class="row g-3 mb-4">
                         <div class="col-md-6">
-                            <label for="mother_name" class="form-label">Mother's Full Name</label>
-                            <input type="text" class="form-control" id="mother_name" required>
+                            <label for="id_mother_full_name" class="form-label">Mother's Full Name</label>
+                            <input type="text" class="form-control" id="id_mother_full_name" name="mother_full_name" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="mother_phone" class="form-label">Mother's Phone Number</label>
-                            <input type="tel" class="form-control" id="mother_phone" required>
+                            <label for="id_mother_phone_number" class="form-label">Mother's Phone Number</label>
+                            <input type="tel" class="form-control" id="id_mother_phone_number" name="mother_phone_number" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="mother_email" class="form-label">Mother's Email</label>
-                            <input type="email" class="form-control" id="mother_email" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="mother_education" class="form-label">Mother's Education (Optional)</label>
-                            <input type="text" class="form-control" id="mother_education">
+                            <label for="id_mother_email" class="form-label">Mother's Email</label>
+                            <input type="email" class="form-control" id="id_mother_email" name="mother_email" required>
                         </div>
                         <div class="col-12">
-                            <label for="mother_profession" class="form-label">Mother's Profession</label>
-                            <input type="text" class="form-control" id="mother_profession" required>
+                            <label for="id_mother_profession" class="form-label">Mother's Profession</label>
+                            <input type="text" class="form-control" id="id_mother_profession" name="mother_profession" required>
                         </div>
                     </div>
 
                     <h6 class="mb-3">Emergency Contact</h6>
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="emergency_name" class="form-label">Emergency Contact Name</label>
-                            <input type="text" class="form-control" id="emergency_name" required>
+                            <label for="id_emergency_contact_1_name" class="form-label">Emergency Contact Name</label>
+                            <input type="text" class="form-control" id="id_emergency_contact_1_name" name="emergency_contact_1_name" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="emergency_relationship" class="form-label">Relationship to Student</label>
-                            <input type="text" class="form-control" id="emergency_relationship" required>
+                            <label for="id_emergency_contact_1_relation" class="form-label">Relationship to Student</label>
+                            <input type="text" class="form-control" id="id_emergency_contact_1_relation" name="emergency_contact_1_relation" required>
                         </div>
                         <div class="col-12">
                             <label class="form-label">Emergency Contact Phone Number</label>
                             <div id="emergency-phone-numbers">
                                 <div class="input-group mb-2">
-                                    <input type="tel" class="form-control" name="emergency_phone_1" required>
+                                    <input type="tel" class="form-control" id="id_emergency_contact_1_phone" name="emergency_contact_1_phone" required>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-secondary btn-sm" id="add-emergency-phone"><i class="fas fa-plus me-2"></i>Add Another Number (Optional)</button>
+                            {% comment %} <button type="button" class="btn btn-secondary btn-sm" id="add-emergency-phone"><i class="fas fa-plus me-2"></i>Add Another Number (Optional)</button> {% endcomment %}
                         </div>
                     </div>
                 </div>
@@ -198,28 +202,28 @@
                     <h5 class="section-header">Financial Information</h5>
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="family_income" class="form-label">Total Annual Family Income (Optional)</label>
-                            <input type="number" class="form-control" id="family_income">
+                            <label for="id_total_annual_family_income" class="form-label">Total Annual Family Income (Optional)</label>
+                            <input type="number" class="form-control" id="id_total_annual_family_income" name="total_annual_family_income">
                         </div>
                         <div class="col-md-6">
-                            <label for="guarantor_name" class="form-label">Financial Guarantor Name</label>
-                            <input type="text" class="form-control" id="guarantor_name" required>
+                            <label for="id_financial_guarantor_name" class="form-label">Financial Guarantor Name</label>
+                            <input type="text" class="form-control" id="id_financial_guarantor_name" name="financial_guarantor_name" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="guarantor_phone" class="form-label">Financial Guarantor Phone Number</label>
-                            <input type="tel" class="form-control" id="guarantor_phone" required>
+                            <label for="id_financial_guarantor_phone_number" class="form-label">Financial Guarantor Phone Number</label>
+                            <input type="tel" class="form-control" id="id_financial_guarantor_phone_number" name="financial_guarantor_phone_number" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="guarantor_email" class="form-label">Financial Guarantor Email</label>
-                            <input type="email" class="form-control" id="guarantor_email" required>
+                            <label for="id_financial_guarantor_email" class="form-label">Financial Guarantor Email</label>
+                            <input type="email" class="form-control" id="id_financial_guarantor_email" name="financial_guarantor_email" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="guarantor_relationship" class="form-label">Relationship with Student</label>
-                            <input type="text" class="form-control" id="guarantor_relationship" required>
+                            <label for="id_financial_guarantor_relation" class="form-label">Relationship with Student</label>
+                            <input type="text" class="form-control" id="id_financial_guarantor_relation" name="financial_guarantor_relation" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="guarantor_income" class="form-label">Approximate Yearly Income of Financial Guarantor</label>
-                            <input type="number" class="form-control" id="guarantor_income" required>
+                            <label for="id_financial_guarantor_approx_yearly_income" class="form-label">Approximate Yearly Income of Financial Guarantor</label>
+                            <input type="number" class="form-control" id="id_financial_guarantor_approx_yearly_income" name="financial_guarantor_approx_yearly_income" required>
                         </div>
                     </div>
                 </div>
@@ -229,18 +233,13 @@
                     <h5 class="section-header">Documents Upload</h5>
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="transcript_file" class="form-label">Official Transcript</label>
-                            <input type="file" class="form-control" id="transcript_file" required>
-                            <small class="form-text text-muted">PDF or image file only.</small>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="sop_file" class="form-label">Statement of Purpose</label>
-                            <input type="file" class="form-control" id="sop_file" required>
+                            <label for="id_olevel_ssc_certificate" class="form-label">O-Levels or SSC Certificate</label>
+                            <input type="file" class="form-control" id="id_olevel_ssc_certificate" name="olevel_ssc_certificate" required accept=".pdf, application/pdf">
                             <small class="form-text text-muted">PDF file only.</small>
                         </div>
                         <div class="col-md-6">
-                            <label for="cv_file" class="form-label">Curriculum Vitae (CV) / Resume (Optional)</label>
-                            <input type="file" class="form-control" id="cv_file">
+                            <label for="id_alevel_ssc_certificate" class="form-label">A-Levels or HSC Certificate</label>
+                            <input type="file" class="form-control" id="id_alevel_ssc_certificate" name="alevel_ssc_certificate" accept=".pdf, application/pdf" required>
                             <small class="form-text text-muted">PDF file only.</small>
                         </div>
                     </div>

@@ -529,5 +529,5 @@ document.addEventListener("DOMContentLoaded", function () {
     populateAttendanceCards();
     populateAcademicStats();
     renderCourseTree();
-    filterAndPopulateCoursesTable(); // Call the filter function on initial load
+    // filterAndPopulateCoursesTable(); // Call the filter function on initial load
 });
