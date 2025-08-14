@@ -1,0 +1,42 @@
+{% extends "portal/dashboard/base.html" %}
+
+{% block title %}Submit New Application{% endblock %}
+
+{% load static %}
+{% block style %}
+    <link href="{% static 'portal/dashboard/new_application.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="application-container">
+        <h2 class="section-title">Submit a New Application</h2>
+        
+        <form id="application-form">
+            <div class="mb-4">
+                <label for="applicationType" class="form-label">Application Type</label>
+                <select class="form-select" id="applicationType" required>
+                    <option value="" selected disabled>Choose an application...</option>
+                    <option value="leave_of_absence">Leave of Absence</option>
+                    <option value="course_unwithdraw">Course Un-Withdraw</option>
+                    <option value="insurance_claim">Insurance Claim</option>
+                    <option value="financial_aid">Financial Aid</option>
+                    <option value="major_change">Major Change Application</option>
+                    <option value="minor_change">Minor Change Application</option>
+                </select>
+            </div>
+            
+            <div id="application-fields-container">
+                <!-- Dynamic fields will be loaded here via JavaScript -->
+            </div>
+            
+            <div class="mt-4" id="submit-button-container" style="display: none;">
+                <button type="submit" class="btn btn-primary w-100">Submit Application</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'portal/dashboard/new_application.js' %}" type="text/javascript">
+    </script>
+{% endblock %}

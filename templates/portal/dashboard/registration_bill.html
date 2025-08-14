@@ -1,0 +1,57 @@
+{% extends "portal/dashboard/base.html" %}
+
+{% block title %}Registration Bill {% endblock %}
+
+{% load static %}
+{% block style %}
+    <link href="{% static 'portal/dashboard/registration_bill.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body %}
+    <!-- Main Content Container -->
+    <div class="main-content-container" id="mainContent">
+        <h2 class="page-heading">Registration Bill</h2>
+
+        <!-- Payment Cards Section -->
+        <section id="payment-cards-section" class="mb-5">
+            <h3 class="section-title">Current Payments</h3>
+            <div class="payment-cards-container" id="paymentCardsContainer">
+                <!-- Payment cards will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <!-- Create Installment Button -->
+        <div class="create-installment-container">
+            <button class="create-installment-btn" id="createInstallmentBtn">Create Installment</button>
+        </div>
+
+        <!-- Previous Registration Bills Table -->
+        <section id="previous-bills-section" class="mb-5">
+            <h3 class="section-title">Previous Registration Bills</h3>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle previous-bills-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Semester</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Due Date</th>
+                            <th scope="col">Date Paid</th>
+                            <th></th> <!-- Pay Online Button Column -->
+                            <th></th> <!-- Print Bill Button Column -->
+                        </tr>
+                    </thead>
+                    <tbody id="previousBillsTableBody">
+                        <!-- Previous bills rows will be dynamically loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'portal/dashboard/registration_bill.js' %}">
+    </script>
+{% endblock %}

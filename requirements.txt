@@ -1,2 +1,4 @@
 django
 django_cleanup
+django-multiselectfield
+django-summernote

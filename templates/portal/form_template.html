@@ -1,4 +1,6 @@
 {% for field in form %}
-    {{ field.label }}
-    {{ field }}
+    <div class="mb-3 text-start">
+        {{ field.label }}
+        {{ field }}
+    </div>
 {% endfor %}

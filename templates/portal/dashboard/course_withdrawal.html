@@ -1,0 +1,53 @@
+{% extends "portal/dashboard/base.html" %}
+
+{% block title %}Course Withdrawal{% endblock %}
+{% load static %}
+
+{% block style %}
+    <link href="{% static 'portal/dashboard/course_withdrawal.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body %}
+    <!-- Main Content Container -->
+    <div class="main-content-container" id="mainContent">
+        <h2 class="page-heading">Course Withdrawal</h2>
+
+        <!-- Enrolled Courses for Withdrawal Section -->
+        <section id="withdrawal-courses" class="mb-5">
+            <h3 class="section-title">Enrolled Courses for Withdrawal</h3>
+            <div class="withdrawal-courses-grid" id="withdrawal-courses-container">
+                <!-- Enrolled course cards for withdrawal will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <!-- Save Changes Button -->
+        <div class="save-changes-btn-container">
+            <button class="save-changes-btn" id="saveChangesBtn">Save Changes</button>
+        </div>
+
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="confirmation-modal-backdrop" id="confirmationModal">
+        <div class="confirmation-modal-content">
+            <h4>Are you sure you wish to withdraw these courses?</h4>
+
+            <div class="summary-section">
+                <h5>Courses to be Withdrawn:</h5>
+                <ul class="summary-list" id="coursesToWithdrawSummary">
+                    <!-- Course codes will be dynamically added here -->
+                </ul>
+            </div>
+
+            <div class="button-group">
+                <button class="modal-btn withdraw-confirm-btn" id="confirmWithdrawalBtn">Withdraw</button>
+                <button class="modal-btn cancel-btn" id="cancelWithdrawalBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'portal/dashboard/course_withdrawal.js' %}">
+    </script>
+{% endblock %}

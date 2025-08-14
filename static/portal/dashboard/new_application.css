@@ -1,0 +1,165 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to right, #003366, #0056b3);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.application-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 800px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #002147;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #002147;
+    margin-bottom: 8px;
+}
+
+.form-control, .form-select {
+    border-radius: 10px;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.withdrawn-course-card {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.withdrawn-course-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.withdrawn-course-card input[type="checkbox"] {
+    margin-right: 15px;
+    min-width: 20px;
+    min-height: 20px;
+    cursor: pointer;
+}
+
+.withdrawn-course-card-content {
+    flex-grow: 1;
+}
+
+.withdrawn-course-card h5 {
+    font-weight: 600;
+    color: #002147;
+    margin-bottom: 5px;
+}
+
+.withdrawn-course-card p {
+    margin-bottom: 0;
+    color: #6c757d;
+}
+
+.file-upload-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.file-upload-label {
+    display: inline-block;
+    cursor: pointer;
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.file-upload-label:hover {
+    background-color: #dee2e6;
+    border-color: #adb5bd;
+}
+
+.file-upload-label i {
+    margin-right: 8px;
+}
+
+.file-upload-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.file-upload-list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+.file-upload-list-item:last-child {
+    border-bottom: none;
+}
+
+.file-upload-list-item span {
+    flex-grow: 1;
+    color: #495057;
+}
+
+.file-upload-list-item .remove-file-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 1.1rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.remove-file-btn:hover {
+    opacity: 1;
+}
+
+.form-text {
+    color: #6c757d;
+}

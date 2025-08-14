@@ -1,0 +1,85 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to right, #003366, #0056b3); /* Same gradient as hero section */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    margin: 0;
+    color: #343a40;
+}
+.login-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 450px; /* Max width for the login form */
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.login-container:hover {
+    transform: translateY(-5px);
+}
+.login-container h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #002147;
+    margin-bottom: 30px;
+}
+.form-label {
+    font-weight: 500;
+    color: #002147;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 8px;
+}
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 12px 15px;
+    font-size: 1rem;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+.btn-login {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px; /* Pill shape */
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 25px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+.btn-login:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .login-container {
+        padding: 30px;
+        margin: 20px;
+    }
+    .login-container h2 {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+    .form-control {
+        padding: 10px 12px;
+    }
+    .btn-login {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}

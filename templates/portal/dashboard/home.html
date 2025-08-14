@@ -1,0 +1,159 @@
+{% extends "portal/dashboard/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% load static %}
+
+{% block style %}
+    <link href="{% static 'portal/dashboard/base.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <!-- Main Dashboard Content -->
+    <div class="dashboard-container" id="mainContent">
+        <h2 class="section-title">Student Dashboard</h2>
+
+        <!-- Course Attendance Section -->
+        <section id="course-attendance" class="mb-5">
+            <h3 class="section-title">Course Attendance</h3>
+            <div class="attendance-card-container" id="attendance-cards-container">
+                <!-- Attendance cards will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <!-- Academic Statistics -->
+        <section id="academic-stats" class="mb-5">
+            <h3 class="section-title">My Academic Progress</h3>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="stats-container">
+                <!-- Statistics cards will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <!-- Course Tree Diagram -->
+        <section id="course-tree" class="mb-5">
+            <h3 class="section-title">Course Prerequisite Tree</h3>
+            <center>
+                <div id="course-tree-diagram" style="width: 100%; overflow: auto; padding: 20px 0;">
+                    <!-- SVG will be rendered here by JavaScript -->
+                </div>
+            </center>
+        </section>
+
+        <!-- Course Filters Section -->
+        <section id="course-filters" class="mb-5">
+            <h3 class="section-title">Filter Available Courses</h3>
+            <div class="filters-container">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="courseSearch" class="form-label">Search by Course Code/Title</label>
+                        <input type="text" class="form-control" id="courseSearch" placeholder="e.g., CS101 or Programming">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Filter by Course Type</label>
+                        <div class="dropdown filter-dropdown">
+                            <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownCourseType" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                Select Course Types
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownCourseType" id="filterCourseTypeChecklist">
+                                <li><label class="dropdown-item"><input type="checkbox" value="Major"> Major</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="Minor"> Minor</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="Optional"> Optional</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="Foundation"> Foundation</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Filter by Completion Status</label>
+                        <div class="dropdown filter-dropdown">
+                            <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownCompletionStatus" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                Select Completion Status
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownCompletionStatus" id="filterCompletionStatusChecklist">
+                                <li><label class="dropdown-item"><input type="checkbox" value="locked"> Locked (Prerequisites Not Met)</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="unlocked"> Unlocked (Prerequisites Met)</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="completed"> Completed</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="withdrawn"> Withdrawn</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="incomplete"> Incomplete (I Grade)</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="not enrolled"> Not Enrolled</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="filterStartTime" class="form-label">Class Start Time</label>
+                        <input type="time" class="form-control" id="filterStartTime">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="filterEndTime" class="form-label">Class End Time</label>
+                        <input type="time" class="form-control" id="filterEndTime">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Filter by Grade</label>
+                        <div class="dropdown filter-dropdown">
+                            <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownGrade" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                Select Grades
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownGrade" id="filterGradeChecklist">
+                                <li><label class="dropdown-item"><input type="checkbox" value="A+"> A+</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="A"> A</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="A-"> A-</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="B+"> B+</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="B"> B</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="B-"> B-</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="C+"> C+</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="C"> C</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="C-"> C-</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="D+"> D+</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="D"> D</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="F"> F</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="W"> W (Withdrawn)</label></li>
+                                <li><label class="dropdown-item"><input type="checkbox" value="I"> I (Incomplete)</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                        <button class="btn btn-primary" id="applyCourseFiltersBtn">Apply Filters</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Available Courses Table -->
+        <section id="available-courses" class="mb-5">
+            <h3 class="section-title">Available Courses</h3>
+            {% if all_course_sections %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">Course Code</th>
+                                <th scope="col">Course Title</th>
+                                <th scope="col">Section</th>
+                                <th scope="col">Timing</th>
+                                <th scope="col">Grade</th> <!-- New Grade Column Header -->
+                            </tr>
+                        </thead>
+                        <tbody id="courses-table-body">
+                            <!-- Course rows will be dynamically loaded here -->
+                             {% for each_course_section in all_course_sections %}
+                                <tr>
+                                    <td data-label="Course Code">{{ each_course_section.course.course_code }}</td>
+                                    <td data-label="Course Title">{{ each_course_section.course.course_title }}</td>
+                                    <td data-label="Section">{{ each_course_section.section_number }}</td>
+                                    <td data-label="Timing">{{ each_course_section.get_course_timing_as_str }}</td>
+                                    {% comment %} <td data-label="Grade">${grade}</td> {% endcomment %}
+                                </tr>
+                             {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <h3 class="text-center">There are currently no courses available</h3>
+            {% endif %}
+        </section>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'portal/dashboard/home.js' %}">
+    </script>
+{% endblock %}

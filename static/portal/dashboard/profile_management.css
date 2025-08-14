@@ -1,0 +1,128 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to right, #003366, #0056b3);
+    min-height: 100vh;
+    padding: 80px 20px 20px 20px; /* Added padding to account for a top navbar */
+}
+
+.profile-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 900px;
+    margin: auto; /* Centered horizontally */
+}
+        
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 20px;
+    }
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #002147;
+    margin-bottom: 40px;
+    text-align: center;
+}
+        
+.nav-tabs {
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 20px;
+}
+
+.nav-tabs .nav-link {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1px solid transparent;
+    color: #495057;
+    font-weight: 500;
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff #007bff #fff;
+}
+        
+.form-label {
+    font-weight: 600;
+    color: #002147;
+    margin-bottom: 8px;
+}
+
+.form-control, .form-select {
+    border-radius: 10px;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+        
+.form-control:focus, .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+        
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-weight: 500;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+        
+.profile-photo-container {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+        
+.profile-photo-preview {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ced4da;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.form-check-label {
+    font-weight: 400;
+}
+        
+.help-text {
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
+        
+.special-conditions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}

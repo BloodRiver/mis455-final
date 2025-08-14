@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagacity Education Portal - {% block title %}{% endblock %}</title>
+    <!-- Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Fontawesome link for icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Custom CSS -->
+    {% load static %}
+    <link href="{% static 'portal/dashboard/base.css' %}" type="text/css" rel="stylesheet">
+    {% block style %}{% endblock %}
+</head>
+<body>
+<!-- Top Navbar -->
+    <nav class="top-navbar">
+        <button class="hamburger-icon" id="hamburgerBtn">☰</button>
+        <a class="navbar-brand" href="{% url 'main:index' %}">
+                    <img src="https://placehold.co/40x40/007bff/ffffff?text=U" alt="University Logo" class="rounded-circle me-2">
+                    Sagacity Education
+        </a>
+        <div class="search-bar-container">
+            <input type="text" class="search-input" placeholder="Search...">
+        </div>
+        <div class="profile-management-container">
+            <button class="profile-btn" id="profileBtn">
+                <span class="profile-icon">P</span>
+                Profile Management
+            </button>
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="{% url 'portal:profile' %}" class="dropdown-item">Edit Profile</a>
+                <a href="{% url 'portal:logout' %}" class="dropdown-item">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Left Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="{% url 'portal:dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'portal:registration_add_drop' %}">Course Registration &amp; Add/Drop</a></li>
+            <li><a href="{% url 'portal:registration_bill' %}">Registration Bill</a></li>
+            <li><a href="{% url 'portal:course_withdrawal' %}">Course Withdrawal</a></li>
+            <li><a href="{% url 'portal:submit_application' %}">Submit Application</a></li>
+            <li><a href="{% url 'portal:faculty_evaluation' %}">Faculty Evaluation</a></li>
+            <li><button id="closeSidebarBtn" class="close-sidebar-btn">Close Sidebar</button></li>
+        </ul>
+    </div>
+
+    <!-- Overlay for dimming effect -->
+    <div class="overlay" id="overlay"></div>
+
+    {% block body %}
+    {% endblock %}
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Custom JavaScript -->
+    <script type="text/javascript" src="{% static 'portal/dashboard/base.js' %}">
+    </script>
+    {% block script %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,137 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to right, #003366, #0056b3);
+    min-height: 100vh;
+    margin: 0;
+    color: #343a40;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.main-card {
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa; /* Light gray background for the main container */
+}
+.card-title {
+    color: #002147;
+    font-weight: 700;
+}
+.question-card {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+.question-card:hover {
+    transform: translateY(-3px);
+}
+.question-text {
+    font-weight: 500;
+    color: #002147;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Styling for the button-like radio buttons */
+.btn-radio {
+    display: none; /* Hide the actual radio button */
+}
+.btn-radio + label {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.btn-radio:checked + label {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.btn-radio.yes + label {
+    background-color: #28a745; /* Bootstrap green */
+    border: 1px solid #28a745;
+}
+.btn-radio.yes:checked + label {
+    background-color: #218838;
+}
+.btn-radio.no + label {
+    background-color: #dc3545; /* Bootstrap red */
+    border: 1px solid #dc3545;
+}
+.btn-radio.no:checked + label {
+    background-color: #c82333;
+}
+.btn-radio + label:hover {
+    opacity: 0.9;
+}
+
+/* Star Rating styles */
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.5rem;
+    color: #ccc; /* Default color for empty stars */
+    cursor: pointer;
+}
+.star-rating .fas {
+    color: #ffc107; /* Color for filled stars */
+}
+.star-rating .fas.hover-star {
+    color: #ffc107;
+    text-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+}
+.rating-text {
+    margin-left: 15px;
+    font-weight: 500;
+    color: #6c757d;
+    min-width: 150px; /* To prevent layout shift */
+}
+
+/* Course Card styles */
+.course-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.course-card-unevaluated {
+    background-color: #f8d7da; /* Red-like background */
+    border: 1px solid #f5c6cb;
+}
+.course-card-evaluated {
+    background-color: #d4edda; /* Green-like background */
+    border: 1px solid #c3e6cb;
+}
+
+/* Responsive adjustments for the card layout */
+@media (max-width: 768px) {
+    .question-card .card-body,
+    .course-card .card-body {
+        padding: 15px;
+    }
+}
