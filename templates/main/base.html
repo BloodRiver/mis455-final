@@ -13,7 +13,7 @@
 
     {% load static %}
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'main/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/base.css' %}">
     {% block style %}{% endblock %}
 
 </head>
@@ -60,7 +60,7 @@
                             </ul>
                             </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/portal/student-admission">Admissions</a>
+                            <a class="nav-link" href="{% url 'portal:admission' %}">Admissions</a>
                         </li>
                         <li class="nav-item dropdown-custom">
                             <a class="nav-link" href="#">Research</a>
