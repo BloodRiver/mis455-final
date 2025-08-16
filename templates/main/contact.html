@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+{% block title %} Contact Us{% endblock %}
+
+{% load static %}
+{% block style %}
+    <link href="{% static 'main/contact.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <h1>Contact Us</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut laboriosam voluptatum vitae facilis maiores, amet, eos voluptatibus saepe deserunt nihil nobis explicabo aperiam a consectetur.</p>
+    <section class="contactsection">
+        <div class="contact">
+            <h2>Send Message</h2>
+            <div class="mescontact">
+                <input type="text" required="required">
+                <span>Full name</span>
+            </div>
+            <div class="mescontact">
+                <input type="text" required="required">
+                <span>Email</span>
+            </div>
+            <div class="mescontact">
+                <textarea required="required"></textarea>
+                <span>Type your Message...</span>
+            </div>
+            <div class="mescontact">
+                <input type="submit" value="Send"></button>
+            </div>
+        </div>
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.123456789012!2d-122.419415684681!3d37.774929779759!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c8b8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sSan%20Francisco%20City%20Hall!5e0!3m2!1sen!2sus!4v1616161616161" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+{% endblock %}

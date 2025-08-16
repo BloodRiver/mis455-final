@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Homepage</title>
+    <title>{% block title %}{% endblock %}</title>
     <!-- Inter font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Fontawesome link for icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    {% load static %}
     <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'main/index.css' %}">
     {% block style %}{% endblock %}
 
 </head>
@@ -20,7 +23,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'main:index' %}">
+                <a class="navbar-brand" href="/">
                     <img src="https://placehold.co/40x40/007bff/ffffff?text=U" alt="University Logo" class="rounded-circle me-2">
                     Sagacity Education
                 </a>
@@ -30,25 +33,50 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'main:index' %}">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item dropdown-custom">
                             <a class="nav-link" href="#">About Us</a>
-                        </li>
-                        <li class="nav-item">
+                            <ul class="dropdown-menu-custom">
+                                <li><a href="{% url 'main:at_a_glance' %}">Sagacity at a Glance</a></li>
+                                <li><a href="{% url 'main:vision_and_mission' %}">Vision &amp; Mission</a></li>
+                                <li><a href="{% url 'main:facts' %}">Facts &amp; Figures</a></li>
+                                <li><a href="{% url 'main:special_initiatives' %}">Special Initiatives</a></li>
+                                <li><a href="{% url 'main:leadership' %}">Leadership &amp; Governance</a></li>
+                                <li><a href="{% url 'main:about_us' %}">Message from the Vice Chancellor</a></li>
+                            </ul>
+                            </li>
+                        <li class="nav-item dropdown-custom">
                             <a class="nav-link" href="#">Academics</a>
-                        </li>
+                            <ul class="dropdown-menu-custom">
+                                <li><a href="#">Undergraduate Programs</a></li>
+                                <li><a href="#">Graduate Programs</a></li>
+                                <li><a href="#">Schools</a></li>
+                                <li><a href="#">Departments</a></li>
+                                <li><a href="#">Institutes, Centers &amp; Cells</a></li>
+                                <li><a href="#">Institutional Quality Assurance Cell (IQAC)</a></li>
+                                <li><a href="#">Outreach Extension &amp; Continuing Education (OECE)</a></li>
+                                <li><a href="#">Library</a></li>
+                            </ul>
+                            </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'portal:admission' %}">Admissions</a>
+                            <a class="nav-link" href="/portal/student-admission">Admissions</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item dropdown-custom">
                             <a class="nav-link" href="#">Research</a>
+                            <ul class="dropdown-menu-custom">
+                                <li><a href="{% url 'main:research' %}">Research at Sagacity Education</a></li>
+                                <li><a href="#">Sagacity Sponsored Research Projects</a></li>
+                                <li><a href="#">Publications</a></li>
+                                <li><a href="#">Centers for Research</a></li>
+                                <li><a href="#">Academic Repository</a></li>
+                            </ul>
+                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'main:contact' %}">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'portal:home' %}">Portal</a>
+                            <a class="nav-link" href="{% url 'portal:dashboard' %}">Portal</a>
                         </li>
                     </ul>
                 </div>
@@ -66,7 +94,7 @@
                 <div class="col-md-4 mb-3 mb-md-0">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{% url 'portal:admission' %}">Admissions</a></li>
+                        <li><a href="/portal/student-admission">Admissions</a></li>
                         <li><a href="#">Academics</a></li>
                         <li><a href="#">Library</a></li>
                         <li><a href="#">Careers</a></li>
@@ -95,6 +123,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <!-- Custom JavaScript -->
+    
+    <script type="text/javascript" src="{% static 'main/base.js' %}"></script>
+
     {% block script %}{% endblock %}
 </body>
 </html>

@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Research at Sagacity Education{% endblock %}
+
+{% load static %}
+
+{% block style %}
+    <link type="text/css" rel="stylesheet" href="{% static 'main/research.css' %}">
+{% endblock %}
+
+{% block body %}
+    <section>
+        <div class="informationpart">
+            <h1>Research at Sagacity Education</h1>
+            <p>At Sagacity Education, we are committed to advancing knowledge and fostering innovation through cutting-edge research. Our research initiatives span various disciplines, aiming to address real-world challenges and contribute to the global academic community.
+            We encourage collaboration among faculty, students, and industry partners to create impactful research outcomes. Our state-of-the-art facilities and resources support a vibrant research environment that nurtures creativity and critical thinking.
+            Explore our research projects, publications, and centers dedicated to pushing the boundaries of knowledge. Join us in our mission to make a difference through research excellence.</p>
+        </div>
+        <div class="researchpart">
+            <h2>Research Areas</h2>
+            <ul>
+                <li>Artificial Intelligence and Machine Learning</li>
+                <li>Environmental Sustainability</li>
+                <li>Health Sciences and Biotechnology</li>
+                <li>Social Sciences and Humanities</li>
+                <li>Engineering and Technology</li>
+            </ul>
+        </div>
+        <div class="researchpart">
+            <h2>Research Centers</h2>
+            <ul>
+                <li>Center for Artificial Intelligence Research</li>
+                <li>Institute for Environmental Studies</li>
+                <li>Health Innovation Center</li>
+                <li>Social Research Institute</li>
+                <li>Engineering and Technology Hub</li>
+            </ul>
+        </div>
+        <div class="buttongroup">
+            <button class="res">Explore more</button>
+            <button class="res">Read more</button>
+        </div>
+    </section>
+    <section>
+        <div class="picsres">
+            <div class="pi">
+                <img src="https://las.uic.edu/wp-content/uploads/sites/181/2024/07/06-28-24-Donald-Wink-8789-1090x727.jpg" alt="" height="300px" width="400px">
+                <img src="https://marvel-b1-cdn.bc0a.com/f00000000297652/eloncdn.blob.core.windows.net/eu3/sites/74/2022/12/10_24_22_Amanda-Chuncos-Wildlife-Ecology-Course_015.jpg" alt="" height="300px" width="400px">
+                <img src="https://brocku.ca/brock-news/wp-content/uploads/2025/07/CEWIL-Chemistry-Group-Shot.jpg?x56978" alt="" height="300px" width="400px">
+                <img src="https://www.bowdoin.edu/biology/images/student-research-biology.jpg" alt="" height="300px" width="400px">
+            </div>
+        </div>
+    </section>
+{% endblock %}
