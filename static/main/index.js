@@ -175,4 +175,22 @@ document.addEventListener('DOMContentLoaded', function() {
     populateNews();
     populateEvents();
     populateFacts();
+
+    // Card hover effect enhancement
+    const cards = document.querySelectorAll('li');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            const img = card.querySelector('img');
+            if (img) {
+                img.style.transform = 'scale(1.05)';
+            }
+        });
+
+        card.addEventListener('mouseleave', () => {
+            const img = card.querySelector('img');
+            if (img) {
+                img.style.transform = 'scale(1)';
+            }
+        });
+    });
 });
